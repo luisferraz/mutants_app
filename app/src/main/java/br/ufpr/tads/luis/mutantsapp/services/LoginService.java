@@ -1,4 +1,4 @@
-package br.ufpr.tads.luis.mutantsapp.controller;
+package br.ufpr.tads.luis.mutantsapp.services;
 
 import br.ufpr.tads.luis.mutantsapp.model.LoginRequest;
 import br.ufpr.tads.luis.mutantsapp.model.User;

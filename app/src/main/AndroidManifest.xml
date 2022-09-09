@@ -16,6 +16,15 @@
         android:theme="@style/Theme.MutantsApp"
         tools:targetApi="31">
         <activity
+            android:name=".pesquisaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".listaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cadastroActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity

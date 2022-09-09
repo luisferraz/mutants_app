@@ -30,38 +30,45 @@ public class MainActivity extends AppCompatActivity {
         EditText editTextUser = findViewById(R.id.editTextLogin);
         EditText editTextSenha = findViewById(R.id.editTextSenha);
 
-        if ((editTextUser.length() == 0) || (editTextSenha.length() == 0)) {
-            Toast.makeText(this, "Informe o usuário e a senha para login!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String username = editTextUser.getText().toString();
-        String senha = editTextSenha.getText().toString();
-
-        //Cria um objeto de login para enviar as informações
+//        if ((editTextUser.length() == 0) || (editTextSenha.length() == 0)) {
+//            Toast.makeText(this, "Informe o usuário e a senha para login!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        String username = editTextUser.getText().toString();
+//        String senha = editTextSenha.getText().toString();
+//
+//        //Cria um objeto de login para enviar as informações
+//        LoginRequest loginInfo = new LoginRequest();
+//        loginInfo.setUsername(username);
+//        loginInfo.setPassword(senha);
         LoginRequest loginInfo = new LoginRequest();
-        loginInfo.setUsername(username);
-        loginInfo.setPassword(senha);
+        loginInfo.setUsername("admin");
+        loginInfo.setPassword("123456789");
+
 
         //Efetua a chamada de login
         Call<User> userCall = new RetrofitConfig().loginService().loginUser(loginInfo);
         userCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                //Caso a chamada tenha sucesso, recebemos os dados do usuario, passamos-o entao para a proxima activity
+                //Caso a chamada tenha sucesso, recebemos os dados do usuário, passamos-o entao para a proxima activity
                 if (response.isSuccessful()) {
                     User user = response.body();
                     Log.i("Login Successful", "onResponse: " + user.toString());
                     Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
+                    finish();
                 }
                 else {
-                    new AlertDialog.Builder(getApplicationContext()).setTitle("Erro!").setMessage("Login ou Senha incorretos").show();
+                    new AlertDialog.Builder(MainActivity.this).setTitle("Erro!").setMessage("Login ou Senha incorretos").show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("CALL ERROR", "onFailure: " + t.getMessage(), t);
-                new AlertDialog.Builder(getApplicationContext()).setTitle("Erro!").setMessage(t.getMessage()).show();
+                new AlertDialog.Builder(MainActivity.this).setTitle("Erro!").setMessage(t.getMessage()).show();
             }
         });
 
