@@ -1,4 +1,4 @@
-package br.ufpr.tads.luis.mutantsapp.model;
+package br.ufpr.tads.luis.mutantsapp.models;
 
 public class LoginRequest {
     private String username;

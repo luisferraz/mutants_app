@@ -1,7 +1,7 @@
 package br.ufpr.tads.luis.mutantsapp.services;
 
-import br.ufpr.tads.luis.mutantsapp.model.LoginRequest;
-import br.ufpr.tads.luis.mutantsapp.model.User;
+import br.ufpr.tads.luis.mutantsapp.models.LoginRequest;
+import br.ufpr.tads.luis.mutantsapp.models.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

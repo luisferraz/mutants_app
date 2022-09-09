@@ -1,4 +1,4 @@
-package br.ufpr.tads.luis.mutantsapp.controller;
+package br.ufpr.tads.luis.mutantsapp.controllers;
 
 import br.ufpr.tads.luis.mutantsapp.services.LoginService;
 import br.ufpr.tads.luis.mutantsapp.services.MutantsService;

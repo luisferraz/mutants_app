@@ -1,4 +1,4 @@
-package br.ufpr.tads.luis.mutantsapp;
+package br.ufpr.tads.luis.mutantsapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
-import br.ufpr.tads.luis.mutantsapp.controller.RetrofitConfig;
-import br.ufpr.tads.luis.mutantsapp.model.Mutant;
-import br.ufpr.tads.luis.mutantsapp.model.TopAbility;
-import br.ufpr.tads.luis.mutantsapp.model.User;
+import br.ufpr.tads.luis.mutantsapp.R;
+import br.ufpr.tads.luis.mutantsapp.controllers.RetrofitConfig;
+import br.ufpr.tads.luis.mutantsapp.models.Mutant;
+import br.ufpr.tads.luis.mutantsapp.models.TopAbility;
+import br.ufpr.tads.luis.mutantsapp.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,15 +59,12 @@ public class DashboardActivity extends AppCompatActivity {
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
                     }
-                    assert response.errorBody() != null;
-                    new AlertDialog.Builder(DashboardActivity.this).setTitle("Erro!").setMessage(response.errorBody().toString()).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Mutant>> call, Throwable t) {
                 Log.e("ERRO", "countMutants: " + t.getMessage());
-
             }
         });
     }
@@ -107,20 +105,20 @@ public class DashboardActivity extends AppCompatActivity {
 
     //Passa para a activity de cadastro de mutantes
     public void cadastrarMutante(View view) {
-        Intent intent = new Intent(DashboardActivity.this, cadastroActivity.class);
+        Intent intent = new Intent(DashboardActivity.this, CadastroActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
 
     //Passa para a activity que lista todos os mutantes
     public void listaMutantes(View view) {
-        Intent intent = new Intent(DashboardActivity.this, listaActivity.class);
+        Intent intent = new Intent(DashboardActivity.this, ListaActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
     //Passa para a activity que pesquisa os mutantes por habilidade
     public void pesquisaMutantes(View view) {
-        Intent intent = new Intent(DashboardActivity.this, pesquisaActivity.class);
+        Intent intent = new Intent(DashboardActivity.this, PesquisaActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

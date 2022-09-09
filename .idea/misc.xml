@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/activity_dashboard.xml" value="0.7529761904761905" />
+        <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/activity_detail.xml" value="0.8275" />
+        <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/activity_lista.xml" value="0.8275" />
         <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/activity_splash.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/adapter_lista_mutantes.xml" value="0.825" />
+        <entry key="..\:/Users/luis_/AndroidStudioProjects/mutants_app/app/src/main/res/layout/mutantes_detail.xml" value="0.8275" />
       </map>
     </option>
   </component>

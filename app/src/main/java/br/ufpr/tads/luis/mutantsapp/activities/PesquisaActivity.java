@@ -1,10 +1,12 @@
-package br.ufpr.tads.luis.mutantsapp;
+package br.ufpr.tads.luis.mutantsapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class pesquisaActivity extends AppCompatActivity {
+import br.ufpr.tads.luis.mutantsapp.R;
+
+public class PesquisaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

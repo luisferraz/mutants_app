@@ -2,9 +2,8 @@ package br.ufpr.tads.luis.mutantsapp.services;
 
 import java.util.List;
 
-import br.ufpr.tads.luis.mutantsapp.model.Ability;
-import br.ufpr.tads.luis.mutantsapp.model.Mutant;
-import br.ufpr.tads.luis.mutantsapp.model.TopAbility;
+import br.ufpr.tads.luis.mutantsapp.models.Mutant;
+import br.ufpr.tads.luis.mutantsapp.models.TopAbility;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;

@@ -1,5 +1,5 @@
 
-package br.ufpr.tads.luis.mutantsapp.model;
+package br.ufpr.tads.luis.mutantsapp.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

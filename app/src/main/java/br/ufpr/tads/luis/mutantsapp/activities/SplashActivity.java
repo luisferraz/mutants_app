@@ -1,4 +1,4 @@
-package br.ufpr.tads.luis.mutantsapp;
+package br.ufpr.tads.luis.mutantsapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import br.ufpr.tads.luis.mutantsapp.R;
 
 public class SplashActivity extends AppCompatActivity {
 
