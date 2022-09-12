@@ -20,9 +20,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewNomeMutante"
+            android:id="@+id/textViewDetalheNome"
             android:layout_width="match_parent"
-            android:layout_height="41dp"
+            android:layout_height="45dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="TextView"

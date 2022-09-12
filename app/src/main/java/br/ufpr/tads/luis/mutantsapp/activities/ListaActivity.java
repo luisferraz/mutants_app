@@ -3,67 +3,72 @@ package br.ufpr.tads.luis.mutantsapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpr.tads.luis.mutantsapp.R;
-import br.ufpr.tads.luis.mutantsapp.controllers.RetrofitConfig;
+import br.ufpr.tads.luis.mutantsapp.adapter.AdapterMutantes;
+import br.ufpr.tads.luis.mutantsapp.adapter.RecyclerItemClickListener;
 import br.ufpr.tads.luis.mutantsapp.models.Mutant;
 import br.ufpr.tads.luis.mutantsapp.models.User;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ListaActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewMutantes;
     private List<Mutant> mutantList = new ArrayList<>();
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
-        recyclerViewMutantes = findViewById(R.id.recyclerViewMutantes);
         //Pega o user passado pela intent
-        User user = (User) getIntent().getSerializableExtra("user");
+        Bundle bundle = getIntent().getExtras();
+        this.user = (User) bundle.getSerializable("user");
+        this.mutantList = (List<Mutant>) bundle.getSerializable("mutants");
 
 
-        //Requista a lista de mutantes cadastrados
-        getAllMutants(user.getTokens().getAccessToken());
+        RecyclerView recyclerViewMutantes = findViewById(R.id.recyclerViewMutantes);
+
+        //Monta a lista de mutantes para exibição na tela
+        AdapterMutantes adapter = new AdapterMutantes(mutantList, user);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerViewMutantes.setLayoutManager(layoutManager);
+        recyclerViewMutantes.setHasFixedSize(true);
+        recyclerViewMutantes.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
+        recyclerViewMutantes.setAdapter(adapter);
+        recyclerViewMutantes.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), recyclerViewMutantes, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                Mutant mutant = mutantList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", user);
+                bundle.putSerializable("mutant", mutant);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                onItemClick(view, position);
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }));
 
 
     }
 
-    //Requista a lista de mutantes cadastrados
-    private void getAllMutants(String accessToken) {
-        Call<List<Mutant>> callMutants = new RetrofitConfig().getMutantsService().getAllMutants(accessToken);
-        callMutants.enqueue(new Callback<List<Mutant>>() {
-            @Override
-            public void onResponse(Call<List<Mutant>> call, Response<List<Mutant>> response) {
-                if (response.isSuccessful()) {
-                    mutantList = response.body();
-                } else {
-                    try {
-                        JSONObject jObjError = new JSONObject(response.errorBody().string());
-                        new AlertDialog.Builder(ListaActivity.this).setTitle(String.format("Erro %d", response.code())).setMessage(jObjError.getString("error")).show();
-                    } catch (JSONException | IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Mutant>> call, Throwable t) {
-                Log.e("ERRO", "getAllMutans: " + t.getMessage());
-            }
-        });
-    }
 }

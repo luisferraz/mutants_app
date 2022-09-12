@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,14 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     //Função de Login
     public void login(View view) {
-//        if ((editTextUser.length() == 0) || (editTextSenha.length() == 0)) {
-//            Toast.makeText(this, "Informe o usuário e a senha para login!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        String username = editTextUser.getText().toString();
-//        String senha = editTextSenha.getText().toString();
-        String username = "admin";
-        String senha = "123456789";
+        if ((editTextUser.length() == 0) || (editTextSenha.length() == 0)) {
+            Toast.makeText(this, "Informe o usuário e a senha para login!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String username = editTextUser.getText().toString();
+        String senha = editTextSenha.getText().toString();
 
         //Cria um objeto de login para enviar as informações
         LoginRequest loginInfo = new LoginRequest();
@@ -53,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 //Caso a chamada tenha sucesso, recebemos os dados do usuário, passamos-o entao para a proxima activity
                 if (response.isSuccessful()) {
                     User user = response.body();
-                    Log.i("Login Successful", "onResponse: " + user.toString());
                     Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
-                    intent.putExtra("user", user);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user", user);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
                 }

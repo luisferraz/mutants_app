@@ -1,7 +1,11 @@
 package br.ufpr.tads.luis.mutantsapp.controllers;
 
+import java.util.concurrent.TimeUnit;
+
 import br.ufpr.tads.luis.mutantsapp.services.LoginService;
 import br.ufpr.tads.luis.mutantsapp.services.MutantsService;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,7 +16,11 @@ public class RetrofitConfig {
 
 
     public RetrofitConfig() {
-        this.retrofit = new Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create()).build();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).callTimeout(10, TimeUnit.SECONDS).build();
+
+        this.retrofit = new Retrofit.Builder().baseUrl(baseURL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
     }
 
     public LoginService loginService() {

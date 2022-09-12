@@ -13,6 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufpr.tads.luis.mutantsapp.R;
@@ -34,9 +36,9 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         textViewTotalMutants = findViewById(R.id.textViewTotalMutantes);
         textViewTop3Abilities = findViewById(R.id.textViewTop3Habilidades);
-
         Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("user");
+        Bundle bundle = intent.getExtras();
+        user = (User) bundle.getSerializable("user");
 
         countMutants(user.getTokens().getAccessToken());
         getTopAbilities(user.getTokens().getAccessToken());
@@ -99,27 +101,60 @@ public class DashboardActivity extends AppCompatActivity {
 
     //Finaliza o aplicativo
     public void exitApp(View view) {
-        finish();
-        System.exit(0);
+        finishAffinity();
     }
 
     //Passa para a activity de cadastro de mutantes
     public void cadastrarMutante(View view) {
         Intent intent = new Intent(DashboardActivity.this, CadastroActivity.class);
-        intent.putExtra("user", user);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     //Passa para a activity que lista todos os mutantes
     public void listaMutantes(View view) {
-        Intent intent = new Intent(DashboardActivity.this, ListaActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+        Call<List<Mutant>> callMutants = new RetrofitConfig().getMutantsService().getAllMutants(user.getTokens().getAccessToken());
+        callMutants.enqueue(new Callback<List<Mutant>>() {
+            @Override
+            public void onResponse(Call<List<Mutant>> call, Response<List<Mutant>> response) {
+                if (response.isSuccessful()) {
+                    List<Mutant> mutantList = new ArrayList<>(response.body());
+                    if (mutantList.size() == 0) {
+                        new AlertDialog.Builder(DashboardActivity.this).setTitle("Atenção").setMessage("Nenhum mutante encontrado para exibição").show();
+                        return;
+                    }
+                    Log.i("MutantList", "onResponse: " + mutantList.toString());
+                    Intent intent = new Intent(DashboardActivity.this, ListaActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("mutants", (Serializable) mutantList);
+                    bundle.putSerializable("user", user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        new AlertDialog.Builder(DashboardActivity.this).setTitle(String.format("Erro %d", response.code())).setMessage(jObjError.getString("error")).show();
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Mutant>> call, Throwable t) {
+                Log.e("ERRO", "getAllMutans: " + t.getMessage());
+            }
+        });
     }
+
     //Passa para a activity que pesquisa os mutantes por habilidade
     public void pesquisaMutantes(View view) {
         Intent intent = new Intent(DashboardActivity.this, PesquisaActivity.class);
-        intent.putExtra("user", user);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

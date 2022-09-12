@@ -51,19 +51,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/buttonCadastrar"
+        android:id="@+id/buttonActivityCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="156dp"
         android:layout_marginEnd="27dp"
         android:onClick="cadastrarMutante"
         android:text="Cadastrar"
-        app:layout_constraintEnd_toStartOf="@+id/buttonListar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonActivityListar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonListar"
+        android:id="@+id/buttonActivityListar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -71,11 +71,11 @@
         android:onClick="listaMutantes"
         android:text="Listar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonCadastrar"
-        app:layout_constraintTop_toTopOf="@+id/buttonCadastrar" />
+        app:layout_constraintStart_toEndOf="@+id/buttonActivityCadastrar"
+        app:layout_constraintTop_toTopOf="@+id/buttonActivityCadastrar" />
 
     <Button
-        android:id="@+id/buttonPesquisar"
+        android:id="@+id/buttonActivityPesquisar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
@@ -83,7 +83,7 @@
         android:text="Pesquisar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonListar" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonActivityListar" />
 
     <Button
         android:id="@+id/buttonSair"
@@ -93,7 +93,7 @@
         android:layout_marginTop="54dp"
         android:onClick="exitApp"
         android:text="SAIR"
-        app:layout_constraintStart_toStartOf="@+id/buttonPesquisar"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPesquisar" />
+        app:layout_constraintStart_toStartOf="@+id/buttonActivityPesquisar"
+        app:layout_constraintTop_toBottomOf="@+id/buttonActivityPesquisar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
