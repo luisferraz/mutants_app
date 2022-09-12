@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".activities.CadastroActivity">
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Habilidades:"
+        android:textColor="#BB86FC"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +48,11 @@
 
     <EditText
         android:id="@+id/editTextCadastroHabilidade1"
+        style="@style/FormComponents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:width="300dp"
         android:ems="10"
         android:focusable="true"
         android:hint="Habilidade"
@@ -62,9 +66,11 @@
 
     <EditText
         android:id="@+id/editTextCadastroHabilidade2"
+        style="@style/FormComponents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:width="300dp"
         android:ems="10"
         android:hint="Habilidade"
         android:inputType="textPersonName"
@@ -77,9 +83,11 @@
 
     <EditText
         android:id="@+id/editTextCadastroHabilidade3"
+        style="@style/FormComponents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:width="300dp"
         android:ems="10"
         android:hint="Habilidade"
         android:inputType="textPersonName"
@@ -94,20 +102,24 @@
         android:id="@+id/buttonSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
         android:layout_marginBottom="16dp"
+        android:width="300dp"
+        style="@style/ContainerComponents"
         android:onClick="salvarMutante"
         android:text="Salvar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCadastroHabilidade3"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintVertical_bias="0.562" />
 
     <EditText
         android:id="@+id/editTextCadastroNome"
+        style="@style/FormComponents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:width="300dp"
         android:ems="10"
         android:hint="Nome"
         android:inputType="textPersonName"
