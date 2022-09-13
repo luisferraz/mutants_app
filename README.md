@@ -3,8 +3,8 @@
 Aplicação Android desenvolvida para a disciplina DS151 - Desenvolvimento Para Dispositivos Móveis
 
 O Instituto Internacional de Mutantes solicitou o desenvolvimento de um aplicativo CRUD de mutantes. 
-O aplicativo tem por objetivocadastrar todos os mutantes encontrados, bem como permitir consulta rápida dos mesmos. 
-Para este trabalho o Instituto pede que seja desenvolvido o backendde um sistema Web com acesso a banco de dados, o banco de dados, o aplicativo Android e serviços Web para que o aplicativo acesse o servidor.
+O aplicativo tem por objetivo cadastrar todos os mutantes encontrados, bem como permitir consulta rápida dos mesmos. 
+Para este trabalho o Instituto pede que seja desenvolvido o backend de um sistema Web com acesso a banco de dados, o banco de dados, o aplicativo Android e serviços Web para que o aplicativo acesse o servidor.
 
 ## 🚀 Requisitos
 
