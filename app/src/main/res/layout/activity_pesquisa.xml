@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cultured"
     tools:context=".activities.PesquisaActivity">
 
     <EditText
         android:id="@+id/editTextPesquisaHabilidade"
+        style="@style/FormComponents"
         android:layout_width="163dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="32dp"
+        android:width="150dp"
         android:ems="10"
         android:hint="Habilidade"
         android:inputType="textPersonName"
@@ -25,7 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
+        android:width="120dp"
         android:onClick="pesquisaPorhabilidade"
         android:text="Pesquisar"
         app:layout_constraintEnd_toEndOf="parent"
