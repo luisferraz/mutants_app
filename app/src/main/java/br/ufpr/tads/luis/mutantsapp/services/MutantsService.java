@@ -45,9 +45,9 @@ public interface MutantsService {
     @GET("/mutants")
     Call<Mutant> getMutantById(@Header("Authorization") String token, @Query("id") Integer mutantId);
 
-    //Retorna o top 3 Habilidades
+    //Retorna o top Habilidades
     @GET("/mutants/ability/top/")
-    Call<List<TopAbility>> getTopAbilities(@Header("Authorization") String token);
+    Call<List<TopAbility>> getTopAbilities(@Header("Authorization") String token, @Query("limit") int limit);
 
     //Retorna a lista de mutantes por habilidade
     @GET("/mutants/ability")

@@ -73,7 +73,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     //Requisita o top 3 de Habilidades dos mutantes cadastrados
     private void getTopAbilities(String accessToken) {
-        Call<List<TopAbility>> topAbilities = new RetrofitConfig().getMutantsService().getTopAbilities(accessToken);
+        Call<List<TopAbility>> topAbilities = new RetrofitConfig().getMutantsService().getTopAbilities(accessToken, 3);
         topAbilities.enqueue(new Callback<List<TopAbility>>() {
             @Override
             public void onResponse(Call<List<TopAbility>> call, Response<List<TopAbility>> response) {
