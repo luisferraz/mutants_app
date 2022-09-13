@@ -31,11 +31,15 @@ Além disto, apresenta botões que devem levar o usuário a cadastrar novos muta
 
 | SplashScreen | Login | Dashboard
 |------------------|-------------------------|-----------------|
-|![Screenshot_20220912_172731](https://user-images.githubusercontent.com/66281304/189755719-5ebc0ba4-ca8a-4134-81c6-26d64ba7b1be.png)| ![Screenshot_20220912_172807](https://user-images.githubusercontent.com/66281304/189755738-bc9c4ef7-8456-4b35-bb73-f3b07703c3ba.png)|![Screenshot_20220912_173008](https://user-images.githubusercontent.com/66281304/189756188-8e0a0975-e29a-430d-9272-ab346c6c2e0b.png)
+|![Splashscreen](https://user-images.githubusercontent.com/22084121/189783150-cde32ba5-d2be-4051-a853-5b6eae0595be.png)|![LoginScreen](https://user-images.githubusercontent.com/22084121/189783164-4fac1f81-02d2-4370-b002-a0230a986f7b.png)|![dashboard](https://user-images.githubusercontent.com/22084121/189783178-4cc4cb01-0ded-454b-892f-7536f9afae91.png)|
 
-| Cadastro | Lista | Detalhes
+| Cadastro | Escolha de imagem | Pesquisa por Habilidade
 |------------------|-------------------------|-----------------|
-|![Screenshot_20220912_173026](https://user-images.githubusercontent.com/66281304/189756444-e97f01db-a389-44f1-8be8-6984b15a1c43.png)|![Screenshot_20220912_173054](https://user-images.githubusercontent.com/66281304/189756467-f15af971-6651-4730-bb33-76dd3cade2dd.png)|![Screenshot_20220912_174358](https://user-images.githubusercontent.com/66281304/189756700-5fafd010-3b84-48f6-9bfa-119d57d85104.png)
+|![cadastro](https://user-images.githubusercontent.com/22084121/189783208-5a6c7f5b-e507-447e-89b4-b2982ddad1ac.png)|![foto_cadastro](https://user-images.githubusercontent.com/22084121/189783749-63e4ba02-87d8-4154-a125-e3f27afd48f3.png)|![Pesquisa por habilidade](https://user-images.githubusercontent.com/22084121/189783289-ca132faa-7654-42e4-987b-40858bb2a669.png)
+
+| Lista | Detalhes|
+|------------------|-------------------------|
+![lista](https://user-images.githubusercontent.com/22084121/189783215-3195ee71-a1df-497f-bf0d-f14ac1c98f8d.png)|![Detalhes](https://user-images.githubusercontent.com/22084121/189783227-02922ee8-98ff-4717-83df-809ba9fdc8d2.png)|
 
 
 ---
