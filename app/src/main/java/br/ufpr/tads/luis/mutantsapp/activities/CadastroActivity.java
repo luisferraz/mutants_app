@@ -77,10 +77,6 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectImage();
-
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("image/*");
-//                startActivityForResult(Intent.createChooser(intent, "Abrir galeria"), PICK_IMAGE_REQUEST);
             }
         });
     }
