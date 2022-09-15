@@ -2,6 +2,7 @@ package br.ufpr.tads.luis.mutantsapp.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -186,7 +187,16 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Mutant> call, Response<Mutant> response) {
                 if (response.isSuccessful()) {
-                    recarregaLista("Mutante atualizado com sucesso!");
+                    new AlertDialog.Builder(DetailActivity.this)
+                            .setTitle("Sucesso")
+                            .setMessage("Mutante atualizado com sucesso!")
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    recarregaLista();
+                                }
+                            })
+                            .show();
                 } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -212,7 +222,16 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    recarregaLista("Mutante removido com sucesso!");
+                    new AlertDialog.Builder(DetailActivity.this)
+                            .setTitle("Sucesso")
+                            .setMessage("Mutante removido com sucesso!")
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    recarregaLista();
+                                }
+                            })
+                            .show();
                 } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -233,7 +252,7 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void recarregaLista(String message) {
+    private void recarregaLista() {
         Call<List<Mutant>> callMutants = new RetrofitConfig().getMutantsService().getAllMutants(user.getTokens().getAccessToken());
         callMutants.enqueue(new Callback<List<Mutant>>() {
             @Override
@@ -251,8 +270,8 @@ public class DetailActivity extends AppCompatActivity {
                     bundle.putSerializable("mutants", (Serializable) mutantList);
                     bundle.putSerializable("user", user);
                     intent.putExtras(bundle);
-                    new AlertDialog.Builder(DetailActivity.this).setTitle("Sucesso").setMessage(message).show();
                     startActivity(intent);
+                    finish();
                 } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -272,5 +291,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

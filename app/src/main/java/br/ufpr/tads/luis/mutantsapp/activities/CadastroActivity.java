@@ -2,6 +2,7 @@ package br.ufpr.tads.luis.mutantsapp.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -206,7 +207,16 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Mutant> call, Response<Mutant> response) {
                 if (response.isSuccessful()) {
-                    new AlertDialog.Builder(CadastroActivity.this).setTitle("Sucesso").setMessage("Novo mutante salvo com sucesso").show();
+                    new AlertDialog.Builder(CadastroActivity.this)
+                            .setTitle("Sucesso")
+                            .setMessage("Novo mutante salvo com sucesso")
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    recarregaDashboard();
+                                }
+                            })
+                            .show();
                 } else {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -223,6 +233,15 @@ public class CadastroActivity extends AppCompatActivity {
                 new AlertDialog.Builder(CadastroActivity.this).setTitle("Erro interno").setMessage("Erro ao conectar ao servidor.").show();
             }
         });
+    }
+
+    private void recarregaDashboard() {
+        Intent intent = new Intent(CadastroActivity.this, DashboardActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 
 }
